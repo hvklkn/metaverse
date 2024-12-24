@@ -37,3 +37,14 @@ public:
     void durumGoster();
 };
 
+void karakter::aclikdurumu() {
+    while (true) {
+        aclik -= 5;
+        if (aclik <= 20) {
+            cout << "Karakter yemek yedi. Açlık sorunu giderildi.";
+            aclik = 100;
+        }
+        this_thread::sleep_for(chrono::seconds(10));
+    }
+}
+
