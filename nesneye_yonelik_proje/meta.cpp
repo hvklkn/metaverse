@@ -48,3 +48,14 @@ void karakter::aclikdurumu() {
     }
 }
 
+void karakter::susuzlukdurumu() {
+    while (true) {
+        susuzluk -= 5;
+        if (susuzluk <= 20) {
+            cout << "Karakter su içti. Susuzluk sorunu giderildi.";
+            susuzluk = 100;
+        }
+        this_thread::sleep_for(chrono::seconds(10));
+    }
+}
+
