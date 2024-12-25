@@ -68,3 +68,15 @@ void karakter::suIc() {
     cout << "Karakter su içti. Susuzluk sorunu giderildi." << endl;
     susuzluk = 100;
 }
+
+void guckarsilastirma(float guc1, float guc2) {
+    if (guc1 == guc2) {
+        cout << "Karakterlerin güçleri birbirine eşittir." << endl;
+    }
+    else if (guc1 > guc2) {
+        cout << "Karakter1 daha güçlüdür." << endl;
+    }
+    else {
+        cout << "Karakter2 daha güçlüdür." << endl;
+    }
+}
