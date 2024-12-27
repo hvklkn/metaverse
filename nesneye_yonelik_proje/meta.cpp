@@ -80,3 +80,29 @@ void guckarsilastirma(float guc1, float guc2) {
         cout << "Karakter2 daha güçlüdür." << endl;
     }
 }
+
+void karakter::hareket(int x, int y) {
+    try {
+        int yon;
+        cout << "Hangi yöne hareket etsin? 0-SOL 1-SAG 2-YUKARI 3-ASAGI: ";
+        cin >> yon;
+
+        switch (yon) {
+            case 0: x -= 1; break;
+            case 1: x += 1; break;
+            case 2: y += 1; break;
+            case 3: y -= 1; break;
+            default: throw invalid_argument("Geçersiz yön seçimi.");
+        }
+
+        if (x < 0 || y < 0) {
+            throw out_of_range("Koordinatlar negatif olamaz!");
+        }
+
+        cout << "Mevcut konum: " << x << ", " << y << endl;
+    }
+    catch (const exception &e) {
+        cout << "Hata: " << e.what() << endl;
+    }
+}
+
