@@ -113,3 +113,44 @@ void karakter::durumGoster() {
     cout << "Susuzluk: " << susuzluk << endl;
     cout << "Güç: " << guc << endl;
 }
+
+void paraaktarma(float &para1, float &para2) {
+    try {
+        int karakternumarasi;
+        float miktar;
+        cout << "Hangi karakter para göndersin? (1 veya 2): ";
+        cin >> karakternumarasi;
+        cout << "Ne kadar para yollasın? ";
+        cin >> miktar;
+
+        if (miktar < 0) {
+            throw invalid_argument("Para miktarı negatif olamaz.");
+        }
+
+        switch (karakternumarasi) {
+            case 1:
+                if (para1 <= 0 || para1 < miktar) {
+                    throw runtime_error("Karakter1 için yetersiz bakiye!");
+                }
+                para1 -= miktar;
+                para2 += miktar;
+                cout << "Karakter1 " << miktar << " TL Karakter2'ye aktardı." << endl;
+                break;
+
+            case 2:
+                if (para2 <= 0 || para2 < miktar) {
+                    throw runtime_error("Karakter2 için yetersiz bakiye!");
+                }
+                para2 -= miktar;
+                para1 += miktar;
+                cout << "Karakter2 " << miktar << " TL Karakter1'e aktardı." << endl;
+                break;
+
+            default:
+                throw out_of_range("Geçersiz karakter numarası girildi.");
+        }
+    }
+    catch (const exception &e) {
+        cout << "Hata: " << e.what() << endl;
+    }
+}
