@@ -154,3 +154,62 @@ void paraaktarma(float &para1, float &para2) {
         cout << "Hata: " << e.what() << endl;
     }
 }
+
+
+int main() {
+    karakter karakter1, karakter2, karakter3;
+    karakter1.getaclik(63); karakter2.getaclik(98); karakter3.getaclik(75);
+    karakter1.getsusuzluk(100); karakter2.getsusuzluk(100); karakter3.getsusuzluk(90);
+    karakter1.getguc(500); karakter2.getguc(888); karakter3.getguc(750);
+    karakter1.getpara(963); karakter2.getpara(358); karakter3.getpara(500);
+
+    int islem;
+    cout << "Islem Menusu" << endl;
+    cout << "1-Karakterlerin güçlerini karşılaştır" << endl;
+    cout << "2-Karakteri hareket ettir" << endl;
+    cout << "3-Para Aktarma" << endl;
+    cout << "4-Karakter Durumu Göster" << endl;
+    cout << "5-Oyunu bitir." << endl;
+
+    bool devam = true;
+    while (devam) {
+        try {
+            cout << "İşlem seçiniz: ";
+            cin >> islem;
+
+            if (cin.fail()) {
+                throw invalid_argument("Geçersiz giriş, lütfen bir sayı girin.");
+            }
+
+            switch (islem) {
+                case 1:
+                    guckarsilastirma(karakter1.setguc(), karakter2.setguc());
+                    break;
+                case 2:
+                    karakter1.hareket(0, 0);
+                    break;
+                case 3:
+                    paraaktarma(karakter1.para, karakter2.para);
+                    break;
+                case 4:
+                    karakter1.durumGoster();
+                    karakter2.durumGoster();
+                    karakter3.durumGoster();
+                    break;
+                case 5:
+                    devam = false;
+                    break;
+                default:
+                    throw out_of_range("Geçersiz işlem numarası.");
+            }
+        }
+        catch (const exception &e) {
+            cout << "Hata: " << e.what() << endl;
+            cin.clear(); // Hata durumunu temizle
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Girdiyi temizle
+        }
+    }
+
+    cout << "OYUN BİTTİ :)" << endl;
+    return 0;
+}
